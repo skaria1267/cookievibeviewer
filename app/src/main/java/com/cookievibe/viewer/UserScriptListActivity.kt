@@ -8,12 +8,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SwitchCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cookievibe.viewer.web.UserScript
 import com.cookievibe.viewer.web.UserScriptStore
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.materialswitch.MaterialSwitch
 
 class UserScriptListActivity : AppCompatActivity() {
 
@@ -124,6 +124,6 @@ class UserScriptListActivity : AppCompatActivity() {
     private class VH(v: View) : RecyclerView.ViewHolder(v) {
         val title: TextView = v.findViewById(R.id.tvTitle)
         val subtitle: TextView = v.findViewById(R.id.tvSubtitle)
-        val sw: SwitchCompat = v.findViewById(R.id.swEnabled)
+        val sw: MaterialSwitch = v.findViewById(R.id.swEnabled)
     }
 }
