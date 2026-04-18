@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="search_engine_entries">
+        <item>Google</item>
+        <item>Bing</item>
+        <item>DuckDuckGo</item>
+        <item>Baidu</item>
+        <item>Startpage</item>
+    </string-array>
+    <string-array name="search_engine_values">
+        <item>https://www.google.com/search?q=</item>
+        <item>https://www.bing.com/search?q=</item>
+        <item>https://duckduckgo.com/?q=</item>
+        <item>https://www.baidu.com/s?wd=</item>
+        <item>https://www.startpage.com/do/search?q=</item>
+    </string-array>
+
+    <string-array name="ua_entries">
+        <item>Default (WebView)</item>
+        <item>Chrome Desktop (Windows)</item>
+        <item>Chrome Desktop (Mac)</item>
+        <item>Chrome Android</item>
+        <item>Safari iOS</item>
+        <item>Firefox Desktop</item>
+        <item>Custom</item>
+    </string-array>
+    <string-array name="ua_values">
+        <item>default</item>
+        <item>chrome_desktop_win</item>
+        <item>chrome_desktop_mac</item>
+        <item>chrome_android</item>
+        <item>safari_ios</item>
+        <item>firefox_desktop</item>
+        <item>custom</item>
+    </string-array>
+</resources>

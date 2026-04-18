@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CookieVibe</string>
+    <string name="hint_url">Search or enter URL</string>
+
+    <string name="title_cookies">Cookies</string>
+    <string name="title_bookmarks">Bookmarks</string>
+    <string name="title_history">History</string>
+    <string name="title_settings">Settings</string>
+
+    <string name="menu_back">Back</string>
+    <string name="menu_forward">Forward</string>
+    <string name="menu_reload">Reload</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_more">Menu</string>
+    <string name="menu_new_tab">New tab (reset page)</string>
+    <string name="menu_bookmarks">Bookmarks</string>
+    <string name="menu_add_bookmark">Add bookmark</string>
+    <string name="menu_history">History</string>
+    <string name="menu_cookies">View Cookies</string>
+    <string name="menu_import_cookies">Import Cookies</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_toggle_incognito">Toggle Incognito</string>
+    <string name="menu_toggle_desktop">Toggle Desktop Mode</string>
+    <string name="menu_clear_data">Clear browsing data</string>
+    <string name="menu_share">Share link</string>
+    <string name="menu_copy_url">Copy URL</string>
+    <string name="menu_find_in_page">Find in page</string>
+
+    <string name="action_copy">Copy</string>
+    <string name="action_copy_all">Copy all</string>
+    <string name="action_export_json">Export as JSON</string>
+    <string name="action_export_header">Export as Header</string>
+    <string name="action_import">Import</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_open">Open</string>
+    <string name="action_save">Save</string>
+
+    <string name="msg_copied">Copied to clipboard</string>
+    <string name="msg_bookmark_added">Bookmark added</string>
+    <string name="msg_data_cleared">Browsing data cleared</string>
+    <string name="msg_incognito_on">Incognito mode ON</string>
+    <string name="msg_incognito_off">Incognito mode OFF</string>
+    <string name="msg_no_cookies">No cookies for this page</string>
+    <string name="msg_import_success">Cookies imported</string>
+    <string name="msg_import_fail">Import failed: invalid format</string>
+    <string name="msg_ssl_warning">Warning: this site has an SSL error. Continue?</string>
+
+    <string name="label_url">URL:</string>
+    <string name="label_cookie_count">Count: %1$d</string>
+
+    <!-- Settings -->
+    <string name="pref_general">General</string>
+    <string name="pref_homepage_title">Homepage</string>
+    <string name="pref_search_engine_title">Search engine</string>
+    <string name="pref_ua_title">User-Agent</string>
+    <string name="pref_ua_custom_title">Custom User-Agent</string>
+    <string name="pref_js_title">Enable JavaScript</string>
+    <string name="pref_images_title">Load images</string>
+    <string name="pref_dnt_title">Send Do-Not-Track header</string>
+    <string name="pref_third_party_cookies_title">Accept third-party cookies</string>
+    <string name="pref_fingerprint_title">Spoof fingerprint JS</string>
+    <string name="pref_fingerprint_summary">Inject JS to fuzz navigator.platform / languages / plugins. Late-injected; can be bypassed.</string>
+    <string name="pref_mixed_content_title">Allow mixed content (HTTP in HTTPS)</string>
+    <string name="pref_ssl_allow_title">Allow SSL override prompt</string>
+    <string name="pref_accept_language_title">Accept-Language header</string>
+    <string name="pref_clear_title">Clear data now</string>
+</resources>

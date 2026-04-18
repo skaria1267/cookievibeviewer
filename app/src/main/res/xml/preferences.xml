@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/pref_general">
+        <EditTextPreference
+            android:key="homepage"
+            android:title="@string/pref_homepage_title"
+            android:defaultValue="https://duckduckgo.com/"
+            android:summary="%s" />
+
+        <ListPreference
+            android:key="search_engine"
+            android:title="@string/pref_search_engine_title"
+            android:entries="@array/search_engine_entries"
+            android:entryValues="@array/search_engine_values"
+            android:defaultValue="https://duckduckgo.com/?q="
+            android:summary="%s" />
+
+        <EditTextPreference
+            android:key="accept_language"
+            android:title="@string/pref_accept_language_title"
+            android:defaultValue="en-US,en;q=0.9"
+            android:summary="%s" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="User-Agent">
+        <ListPreference
+            android:key="ua_preset"
+            android:title="@string/pref_ua_title"
+            android:entries="@array/ua_entries"
+            android:entryValues="@array/ua_values"
+            android:defaultValue="default"
+            android:summary="%s" />
+
+        <EditTextPreference
+            android:key="ua_custom"
+            android:title="@string/pref_ua_custom_title"
+            android:defaultValue=""
+            android:summary="%s" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Privacy &amp; Content">
+        <SwitchPreferenceCompat
+            android:key="js_enabled"
+            android:title="@string/pref_js_title"
+            android:defaultValue="true" />
+
+        <SwitchPreferenceCompat
+            android:key="load_images"
+            android:title="@string/pref_images_title"
+            android:defaultValue="true" />
+
+        <SwitchPreferenceCompat
+            android:key="dnt"
+            android:title="@string/pref_dnt_title"
+            android:defaultValue="true" />
+
+        <SwitchPreferenceCompat
+            android:key="third_party_cookies"
+            android:title="@string/pref_third_party_cookies_title"
+            android:defaultValue="true" />
+
+        <SwitchPreferenceCompat
+            android:key="fingerprint_spoof"
+            android:title="@string/pref_fingerprint_title"
+            android:summary="@string/pref_fingerprint_summary"
+            android:defaultValue="false" />
+
+        <SwitchPreferenceCompat
+            android:key="mixed_content"
+            android:title="@string/pref_mixed_content_title"
+            android:defaultValue="false" />
+
+        <SwitchPreferenceCompat
+            android:key="ssl_override"
+            android:title="@string/pref_ssl_allow_title"
+            android:defaultValue="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Maintenance">
+        <Preference
+            android:key="clear_now"
+            android:title="@string/pref_clear_title" />
+    </PreferenceCategory>
+</PreferenceScreen>
