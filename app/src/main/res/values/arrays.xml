@@ -2,9 +2,9 @@
 <resources>
     <string-array name="search_engine_entries">
         <item>Google</item>
-        <item>Bing</item>
+        <item>必应</item>
         <item>DuckDuckGo</item>
-        <item>Baidu</item>
+        <item>百度</item>
         <item>Startpage</item>
     </string-array>
     <string-array name="search_engine_values">
@@ -16,13 +16,13 @@
     </string-array>
 
     <string-array name="ua_entries">
-        <item>Default (WebView)</item>
-        <item>Chrome Desktop (Windows)</item>
-        <item>Chrome Desktop (Mac)</item>
+        <item>默认(WebView)</item>
+        <item>Chrome 桌面(Windows)</item>
+        <item>Chrome 桌面(Mac)</item>
         <item>Chrome Android</item>
         <item>Safari iOS</item>
-        <item>Firefox Desktop</item>
-        <item>Custom</item>
+        <item>Firefox 桌面</item>
+        <item>自定义</item>
     </string-array>
     <string-array name="ua_values">
         <item>default</item>

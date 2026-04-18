@@ -23,7 +23,7 @@
             android:summary="%s" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="User-Agent">
+    <PreferenceCategory android:title="@string/pref_ua_category">
         <ListPreference
             android:key="ua_preset"
             android:title="@string/pref_ua_title"
@@ -39,7 +39,7 @@
             android:summary="%s" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="Privacy &amp; Content">
+    <PreferenceCategory android:title="@string/pref_privacy_category">
         <SwitchPreferenceCompat
             android:key="js_enabled"
             android:title="@string/pref_js_title"
@@ -77,7 +77,7 @@
             android:defaultValue="false" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="Maintenance">
+    <PreferenceCategory android:title="@string/pref_maintenance_category">
         <Preference
             android:key="clear_now"
             android:title="@string/pref_clear_title" />

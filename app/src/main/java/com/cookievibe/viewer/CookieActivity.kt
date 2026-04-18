@@ -97,7 +97,7 @@ class CookieActivity : AppCompatActivity() {
             putExtra(Intent.EXTRA_SUBJECT, title)
             putExtra(Intent.EXTRA_TEXT, text)
         }
-        startActivity(Intent.createChooser(intent, title))
+        startActivity(Intent.createChooser(intent, getString(R.string.action_share)))
     }
 
     private inner class Adapter : RecyclerView.Adapter<VH>() {

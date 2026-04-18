@@ -155,9 +155,9 @@ class MainActivity : AppCompatActivity() {
                 req.addRequestHeader("User-Agent", webView.settings.userAgentString)
                 val dm = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
                 dm.enqueue(req)
-                Toast.makeText(this, "Downloading: $name", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.msg_downloading, name), Toast.LENGTH_SHORT).show()
             } catch (e: Exception) {
-                Toast.makeText(this, "Download failed: ${e.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.msg_download_fail, e.message ?: ""), Toast.LENGTH_SHORT).show()
             }
         })
 
@@ -200,10 +200,10 @@ class MainActivity : AppCompatActivity() {
             override fun onReceivedSslError(view: WebView, handler: SslErrorHandler, error: android.net.http.SslError) {
                 if (Prefs.sslOverride(this@MainActivity)) {
                     AlertDialog.Builder(this@MainActivity)
-                        .setTitle("SSL Error")
+                        .setTitle(R.string.msg_ssl_title)
                         .setMessage(getString(R.string.msg_ssl_warning) + "\n\n" + error.toString())
-                        .setPositiveButton("Proceed") { _, _ -> handler.proceed() }
-                        .setNegativeButton("Cancel") { _, _ -> handler.cancel() }
+                        .setPositiveButton(R.string.action_proceed) { _, _ -> handler.proceed() }
+                        .setNegativeButton(R.string.action_cancel) { _, _ -> handler.cancel() }
                         .setCancelable(false)
                         .show()
                 } else {
@@ -234,10 +234,10 @@ class MainActivity : AppCompatActivity() {
             override fun onPermissionRequest(request: android.webkit.PermissionRequest) {
                 runOnUiThread {
                     AlertDialog.Builder(this@MainActivity)
-                        .setTitle("Permission request")
+                        .setTitle(R.string.msg_permission_title)
                         .setMessage(request.resources.joinToString(", "))
-                        .setPositiveButton("Grant") { _, _ -> request.grant(request.resources) }
-                        .setNegativeButton("Deny") { _, _ -> request.deny() }
+                        .setPositiveButton(R.string.action_grant) { _, _ -> request.grant(request.resources) }
+                        .setNegativeButton(R.string.action_deny) { _, _ -> request.deny() }
                         .show()
                 }
             }
@@ -269,7 +269,7 @@ class MainActivity : AppCompatActivity() {
                     try {
                         startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
                     } catch (_: Exception) {
-                        Toast.makeText(this, "Cannot open link", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, R.string.msg_cannot_open, Toast.LENGTH_SHORT).show()
                     }
                 }
                 true
@@ -357,7 +357,7 @@ class MainActivity : AppCompatActivity() {
                         type = "text/plain"
                         putExtra(Intent.EXTRA_TEXT, url)
                     }
-                    startActivity(Intent.createChooser(i, "Share"))
+                    startActivity(Intent.createChooser(i, getString(R.string.action_share)))
                     true
                 }
                 R.id.action_copy_url -> {
@@ -405,28 +405,28 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showFindInPage() {
-        val input = EditText(this).apply { hint = "Search in page" }
+        val input = EditText(this).apply { hint = getString(R.string.msg_find_hint) }
         AlertDialog.Builder(this)
             .setTitle(R.string.menu_find_in_page)
             .setView(input)
-            .setPositiveButton("Find") { _, _ -> webView.findAllAsync(input.text.toString()) }
-            .setNegativeButton("Clear") { _, _ -> webView.clearMatches() }
+            .setPositiveButton(R.string.action_find) { _, _ -> webView.findAllAsync(input.text.toString()) }
+            .setNegativeButton(R.string.action_clear) { _, _ -> webView.clearMatches() }
             .show()
     }
 
     private fun showImportCookiesDialog() {
         val url = webView.url
         if (url.isNullOrEmpty()) {
-            Toast.makeText(this, "Load a page first", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.msg_load_first, Toast.LENGTH_SHORT).show()
             return
         }
         val input = EditText(this).apply {
-            hint = "name=value; name2=value2 OR JSON [{\"name\":...,\"value\":...}]"
+            hint = getString(R.string.msg_import_hint)
             minLines = 4
         }
         AlertDialog.Builder(this)
             .setTitle(R.string.menu_import_cookies)
-            .setMessage("Domain: ${Uri.parse(url).host}")
+            .setMessage(getString(R.string.msg_import_domain, Uri.parse(url).host ?: ""))
             .setView(input)
             .setPositiveButton(R.string.action_import) { _, _ ->
                 val ok = importCookies(url, input.text.toString())
@@ -437,7 +437,7 @@ class MainActivity : AppCompatActivity() {
                 ).show()
                 if (ok) webView.reload()
             }
-            .setNegativeButton("Cancel", null)
+            .setNegativeButton(R.string.action_cancel, null)
             .show()
     }
 
@@ -477,7 +477,7 @@ class MainActivity : AppCompatActivity() {
     private fun clearData() {
         AlertDialog.Builder(this)
             .setTitle(R.string.menu_clear_data)
-            .setMessage("Clear cookies, cache, history, and form data?")
+            .setMessage(R.string.msg_clear_confirm)
             .setPositiveButton(R.string.action_delete) { _, _ ->
                 val cm = CookieManager.getInstance()
                 cm.removeAllCookies(null)
@@ -488,7 +488,7 @@ class MainActivity : AppCompatActivity() {
                 Store.history(this).clear()
                 Toast.makeText(this, R.string.msg_data_cleared, Toast.LENGTH_SHORT).show()
             }
-            .setNegativeButton("Cancel", null)
+            .setNegativeButton(R.string.action_cancel, null)
             .show()
     }
 
