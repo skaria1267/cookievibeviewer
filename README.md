@@ -49,7 +49,19 @@
 - 是否允许 Mixed Content(HTTPS 页中的 HTTP 资源)
 - SSL 错误放行开关(默认关;开启后遇到证书错误会弹窗让你选择继续/取消)
 
-### 5. 其它
+### 5. 用户脚本(油猴兼容,轻量版)
+- 菜单 → **用户脚本** 打开管理列表,右上角新建后粘贴代码即可保存
+- 支持标准 `==UserScript== ... ==/UserScript==` 元数据块,识别指令:
+  - `@name` / `@namespace` / `@version` / `@description` / `@author`
+  - `@match` / `@include` / `@exclude`(支持 `*` 通配与 `/正则/` 形式)
+  - `@run-at`:`document-start` / `document-end` / `document-idle`
+  - `@noframes`
+- 每条脚本可**独立开关启用/禁用**,长按可删除
+- 注入时机:start 在 `onPageStarted`,end/idle 在 `onPageFinished` 后
+- 已注入 `GM_info`,每条脚本独立 try/catch,出错不影响其他脚本
+- ⚠️ 不支持 `GM_xmlhttpRequest` / `GM_setValue` / `@require` 等需要扩展权限的 API;`@grant none` 类脚本可完整运行
+
+### 6. 其它
 - 书签:当前页一键加入,书签列表可打开/删除
 - 历史记录:列表查看、点击重新打开、可清空
 - 加载图片开关(省流量)
@@ -70,9 +82,15 @@ app/src/main/java/com/cookievibe/viewer/
 ├── SettingsActivity.kt      # 设置页
 ├── db/Store.kt              # 基于 SharedPreferences + JSON 的书签/历史存储
 ├── prefs/Prefs.kt           # 偏好项封装
+├── UserScriptListActivity.kt  # 用户脚本列表 / 启用开关 / 删除
+├── UserScriptEditActivity.kt  # 粘贴/编辑 + 解析元数据保存
 └── web/
     ├── UserAgents.kt        # UA 预设
-    └── FingerprintScript.kt # 指纹伪装 JS
+    ├── FingerprintScript.kt # 指纹伪装 JS
+    ├── UserScript.kt        # 数据类 + ==UserScript== 头解析器
+    ├── UserScriptStore.kt   # SharedPreferences 持久化
+    ├── UserScriptMatcher.kt # @match / @include glob → 正则
+    └── UserScriptInjector.kt # evaluateJavascript 包装 + GM_info
 ```
 
 存储方案:直接用 `SharedPreferences` 把书签/历史序列化成 JSON(`cvv_store`),没有引入 Room,体量极小。

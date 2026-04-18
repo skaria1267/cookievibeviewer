@@ -65,5 +65,18 @@
             android:label="@string/title_settings"
             android:parentActivityName=".MainActivity" />
 
+        <activity
+            android:name=".UserScriptListActivity"
+            android:exported="false"
+            android:label="@string/title_userscripts"
+            android:parentActivityName=".MainActivity" />
+
+        <activity
+            android:name=".UserScriptEditActivity"
+            android:exported="false"
+            android:label="@string/title_userscript_edit"
+            android:parentActivityName=".UserScriptListActivity"
+            android:windowSoftInputMode="adjustResize" />
+
     </application>
 </manifest>

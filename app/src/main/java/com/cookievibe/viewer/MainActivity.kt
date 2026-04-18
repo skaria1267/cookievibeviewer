@@ -39,7 +39,12 @@ import com.cookievibe.viewer.db.Entry
 import com.cookievibe.viewer.db.Store
 import com.cookievibe.viewer.prefs.Prefs
 import com.cookievibe.viewer.web.FingerprintScript
+import com.cookievibe.viewer.web.RunAt
 import com.cookievibe.viewer.web.UserAgents
+import com.cookievibe.viewer.web.UserScript
+import com.cookievibe.viewer.web.UserScriptInjector
+import com.cookievibe.viewer.web.UserScriptMatcher
+import com.cookievibe.viewer.web.UserScriptStore
 
 class MainActivity : AppCompatActivity() {
 
@@ -52,6 +57,8 @@ class MainActivity : AppCompatActivity() {
     private var incognito = false
     private var customView: View? = null
     private var customViewCallback: WebChromeClient.CustomViewCallback? = null
+
+    private var enabledScripts: List<UserScript> = emptyList()
 
     private val prefChange = SharedPreferences.OnSharedPreferenceChangeListener { _, _ ->
         applyWebSettings()
@@ -121,6 +128,23 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         webView.onResume()
+        reloadUserScripts()
+    }
+
+    private fun reloadUserScripts() {
+        enabledScripts = UserScriptStore.get(this).enabledOnly()
+    }
+
+    private fun injectUserScripts(view: WebView, url: String, runAt: RunAt, isMainFrame: Boolean) {
+        if (enabledScripts.isEmpty()) return
+        for (s in enabledScripts) {
+            if (s.runAt != runAt) continue
+            if (s.noFrames && !isMainFrame) continue
+            if (!UserScriptMatcher.matches(s, url)) continue
+            try {
+                view.evaluateJavascript(UserScriptInjector.wrap(s), null)
+            } catch (_: Exception) { /* ignore single script failure */ }
+        }
     }
 
     override fun onDestroy() {
@@ -173,6 +197,7 @@ class MainActivity : AppCompatActivity() {
                         FingerprintScript.build(FingerprintScript.platformFor(key), langs), null
                     )
                 }
+                injectUserScripts(view, url, RunAt.START, isMainFrame = true)
             }
 
             override fun onPageFinished(view: WebView, url: String) {
@@ -182,6 +207,8 @@ class MainActivity : AppCompatActivity() {
                     Store.history(this@MainActivity).add(Entry(title, url, System.currentTimeMillis()))
                 }
                 CookieManager.getInstance().flush()
+                injectUserScripts(view, url, RunAt.END, isMainFrame = true)
+                view.postDelayed({ injectUserScripts(view, url, RunAt.IDLE, true) }, 50)
             }
 
             override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
@@ -351,6 +378,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.action_incognito -> { toggleIncognito(); true }
                 R.id.action_desktop -> { toggleDesktop(); true }
                 R.id.action_find -> { showFindInPage(); true }
+                R.id.action_userscripts -> { startActivity(Intent(this, UserScriptListActivity::class.java)); true }
                 R.id.action_share -> {
                     val url = webView.url ?: return@setOnMenuItemClickListener true
                     val i = Intent(Intent.ACTION_SEND).apply {

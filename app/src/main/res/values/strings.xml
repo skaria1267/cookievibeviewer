@@ -26,6 +26,7 @@
     <string name="menu_share">分享链接</string>
     <string name="menu_copy_url">复制网址</string>
     <string name="menu_find_in_page">页内查找</string>
+    <string name="menu_userscripts">用户脚本</string>
 
     <string name="action_copy">复制</string>
     <string name="action_copy_all">全部复制</string>
@@ -42,6 +43,9 @@
     <string name="action_grant">允许</string>
     <string name="action_deny">拒绝</string>
     <string name="action_share">分享</string>
+    <string name="action_edit">编辑</string>
+    <string name="action_new_script">新建脚本</string>
+    <string name="action_discard">放弃</string>
 
     <string name="msg_copied">已复制到剪贴板</string>
     <string name="msg_bookmark_added">已添加书签</string>
@@ -86,4 +90,18 @@
     <string name="pref_ssl_allow_title">SSL 错误放行弹窗</string>
     <string name="pref_accept_language_title">Accept-Language 请求头</string>
     <string name="pref_clear_title">立即清除数据</string>
+
+    <!-- 用户脚本 -->
+    <string name="title_userscripts">用户脚本</string>
+    <string name="title_userscript_new">新建脚本</string>
+    <string name="title_userscript_edit">编辑脚本</string>
+    <string name="hint_paste_script">在此粘贴油猴脚本代码(需包含 ==UserScript== 元数据块,至少有一条 @match)</string>
+    <string name="msg_no_scripts">还没有脚本,点击右上角新建并粘贴代码</string>
+    <string name="msg_no_script_content">脚本内容为空</string>
+    <string name="msg_no_match">(未指定 @match 规则)</string>
+    <string name="msg_no_match_directive">脚本缺少 @match 或 @include 指令,无法匹配任何页面</string>
+    <string name="msg_script_parse_error">未找到 ==UserScript== 元数据块</string>
+    <string name="msg_script_saved">已保存</string>
+    <string name="msg_delete_script_confirm">确定删除脚本 "%1$s" 吗?</string>
+    <string name="msg_discard_changes">未保存的修改将丢失,确定退出?</string>
 </resources>

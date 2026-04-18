@@ -9,6 +9,7 @@
     <item android:id="@+id/action_incognito" android:title="@string/menu_toggle_incognito" />
     <item android:id="@+id/action_desktop" android:title="@string/menu_toggle_desktop" />
     <item android:id="@+id/action_find" android:title="@string/menu_find_in_page" />
+    <item android:id="@+id/action_userscripts" android:title="@string/menu_userscripts" />
     <item android:id="@+id/action_share" android:title="@string/menu_share" />
     <item android:id="@+id/action_copy_url" android:title="@string/menu_copy_url" />
     <item android:id="@+id/action_clear" android:title="@string/menu_clear_data" />
